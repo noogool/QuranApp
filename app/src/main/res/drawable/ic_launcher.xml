@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- پس‌زمینه‌ی سبز -->
+    <path
+        android:fillColor="#1B5E3B"
+        android:pathData="M48,48m-48,0a48,48 0,1 1,96 0a48,48 0,1 1,-96 0" />
+    <!-- کتاب باز: صفحه‌ی راست و چپ -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,34 C42,29 32,28 22,31 L22,66 C32,63 42,64 48,69 Z" />
+    <path
+        android:fillColor="#F3E9C9"
+        android:pathData="M48,34 C54,29 64,28 74,31 L74,66 C64,63 54,64 48,69 Z" />
+    <!-- ستاره/نشان طلایی بالای کتاب -->
+    <path
+        android:fillColor="#E0B13A"
+        android:pathData="M48,14 L51,22 L59,22 L52.5,27 L55,35 L48,30 L41,35 L43.5,27 L37,22 L45,22 Z" />
+</vector>

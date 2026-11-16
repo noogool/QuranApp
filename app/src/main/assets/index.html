@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>قرآن کریم</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div id="title">قرآن کریم</div>
+    <div id="subtitle"></div>
+    <button id="themebtn" aria-label="حالت شب">🌙</button>
+  </header>
+  <main id="screen"></main>
+  <nav id="tabs">
+    <button data-tab="reader"><span class="ic">📖</span>قرآن</button>
+    <button data-tab="index"><span class="ic">☰</span>فهرست</button>
+    <button data-tab="search"><span class="ic">🔍</span>جستجو</button>
+    <button data-tab="istikhara"><span class="ic">✨</span>استخاره</button>
+  </nav>
+</div>
+<div id="loading">در حال آماده‌سازی…</div>
+<script src="surahs.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

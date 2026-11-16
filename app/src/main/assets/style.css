@@ -1,0 +1,197 @@
+/* اگر فایل فونت قرآنی (مثلاً Amiri Quran) را با نام quran.ttf در assets/fonts بگذارید، خودکار استفاده می‌شود */
+@font-face { font-family: "QuranFont"; src: url("fonts/quran.ttf"); }
+
+:root {
+  --bg: #FBF7EE;
+  --fg: #1f2a24;
+  --card: #ffffff;
+  --muted: #6b7a70;
+  --primary: #1B5E3B;
+  --onprimary: #ffffff;
+  --accent: #B8860B;
+  --line: #e5dcc7;
+  --mark: #ffe58a;
+  --markfg: #1f2a24;
+  --fs: 28px;
+  --arfont: "QuranFont", "Amiri Quran", "Amiri", "Noto Naskh Arabic", "Droid Naskh Shift", "Scheherazade New", "Traditional Arabic", serif;
+}
+
+:root[data-theme="dark"] {
+  --bg: #121814;
+  --fg: #E9E4D6;
+  --card: #1c241e;
+  --muted: #9aa89f;
+  --primary: #134430;
+  --accent: #E0B13A;
+  --line: #2b372f;
+  --mark: #7a6420;
+  --markfg: #fff;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, "Vazirmatn", "Noto Sans Arabic", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+button, input { font-family: inherit; font-size: 16px; color: inherit; }
+
+#app { height: 100%; display: flex; flex-direction: column; }
+
+#topbar {
+  flex: none;
+  background: var(--primary);
+  color: var(--onprimary);
+  padding: 10px 14px;
+  text-align: center;
+}
+#title { font-size: 18px; font-weight: 700; }
+#subtitle { font-size: 12px; opacity: .85; min-height: 16px; }
+#themebtn {
+  position: absolute; top: 8px; left: 10px;
+  background: none; border: 0; font-size: 20px; padding: 4px 8px; color: var(--onprimary);
+}
+
+#screen { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.scroll { flex: 1; overflow-y: auto; padding: 12px; -webkit-overflow-scrolling: touch; }
+
+#tabs {
+  flex: none;
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+}
+#tabs button {
+  flex: 1; border: 0; background: none; padding: 7px 2px 8px;
+  font-size: 12px; color: var(--muted); line-height: 1.3;
+}
+#tabs button .ic { display: block; font-size: 20px; }
+#tabs button.active { color: var(--primary); font-weight: 700; }
+:root[data-theme="dark"] #tabs button.active { color: var(--accent); }
+
+/* ---- خواندن ---- */
+.page-scroll { flex: 1; overflow-y: auto; padding: 10px 16px 16px; -webkit-overflow-scrolling: touch; }
+.ayahs {
+  font-family: var(--arfont);
+  font-size: var(--fs);
+  line-height: 2.35;
+  text-align: justify;
+  text-justify: inter-word;
+  margin: 0 0 .4em;
+}
+.ayah { border-radius: 6px; }
+.ayah.flash { background: var(--mark); color: var(--markfg); }
+.num { color: var(--accent); font-size: .7em; white-space: nowrap; }
+
+.banner {
+  margin: 14px 0 6px;
+  padding: 8px 10px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  text-align: center;
+  background: var(--card);
+}
+.b-ar { display: block; font-family: var(--arfont); font-size: 26px; line-height: 1.8; }
+.b-fa { display: block; font-size: 12px; color: var(--muted); }
+.basmala {
+  font-family: var(--arfont);
+  font-size: calc(var(--fs) * .95);
+  text-align: center;
+  line-height: 2.2;
+  margin: 4px 0 2px;
+}
+
+.page-nav {
+  flex: none; display: flex; align-items: center; gap: 6px;
+  padding: 6px 8px; background: var(--card); border-top: 1px solid var(--line);
+}
+.page-nav button {
+  border: 1px solid var(--line); background: var(--bg); border-radius: 10px;
+  padding: 9px 10px; min-width: 44px; font-size: 14px;
+}
+.page-nav button:disabled { opacity: .35; }
+.page-nav .mid { flex: 1; font-weight: 700; }
+.page-nav .fs { padding: 9px 8px; min-width: 38px; }
+
+/* ---- فهرست و نتایج ---- */
+.seg { flex: none; display: flex; gap: 6px; padding: 10px 12px 0; }
+.seg button {
+  flex: 1; border: 1px solid var(--line); background: var(--card);
+  border-radius: 20px; padding: 8px 4px; font-size: 14px; color: var(--muted);
+}
+.seg button.on { background: var(--primary); color: var(--onprimary); border-color: var(--primary); font-weight: 700; }
+
+.item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; padding: 10px 12px; margin-bottom: 8px;
+}
+.item:active, .result:active { background: var(--bg); }
+.badge {
+  flex: none; width: 38px; height: 38px; line-height: 36px; text-align: center;
+  border: 2px solid var(--accent); border-radius: 50%; font-size: 14px; font-weight: 700;
+}
+.grow { flex: 1; min-width: 0; }
+.name { font-size: 16px; font-weight: 700; }
+.sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.ar-name { font-family: var(--arfont); font-size: 20px; color: var(--primary); white-space: nowrap; }
+:root[data-theme="dark"] .ar-name { color: var(--accent); }
+.snippet { font-family: var(--arfont); font-size: 17px; margin-top: 2px; }
+
+.field { display: flex; gap: 8px; margin-bottom: 12px; }
+.field input {
+  flex: 1; min-width: 0; padding: 11px 12px; border: 1px solid var(--line);
+  border-radius: 12px; background: var(--card);
+}
+.btn {
+  border: 0; background: var(--primary); color: var(--onprimary);
+  border-radius: 12px; padding: 11px 16px; font-weight: 700;
+}
+.btn.alt { background: var(--card); color: var(--primary); border: 1px solid var(--primary); }
+:root[data-theme="dark"] .btn.alt { color: var(--accent); border-color: var(--accent); }
+
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 12px 14px; margin-bottom: 10px;
+}
+.result .meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.ar-text { font-family: var(--arfont); font-size: 22px; line-height: 2.1; text-align: justify; }
+mark { background: var(--mark); color: var(--markfg); border-radius: 4px; padding: 0 2px; }
+.hint { color: var(--muted); text-align: center; padding: 24px 8px; line-height: 1.9; }
+.count { font-size: 13px; color: var(--muted); margin: 0 2px 8px; }
+
+.juzgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.juzgrid .cell {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  text-align: center; padding: 12px 0; font-weight: 700;
+}
+.juzgrid .cell.sel { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary) inset; }
+
+/* ---- استخاره ---- */
+.ist-intro { text-align: center; line-height: 2; }
+.ist-intro .big { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.ist-verse { text-align: center; animation: pop .35s ease; }
+.ist-verse .ar-text { font-size: 28px; text-align: center; line-height: 2.3; }
+.ist-verse .meta { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.ist-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; justify-content: center; }
+.ist-main { display: block; width: 100%; font-size: 18px; padding: 14px; margin: 8px 0 14px; }
+@keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+
+/* ---- مودال و بارگیری ---- */
+.overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, .45); display: flex; align-items: center; justify-content: center; z-index: 10;
+}
+.modal { background: var(--card); padding: 16px; border-radius: 14px; width: 86%; max-width: 340px; }
+.modal h3 { margin: 0 0 10px; font-size: 16px; }
+.modal .row { display: flex; gap: 8px; margin-top: 12px; }
+.modal input { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+
+#loading { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 20; color: var(--muted); }
+.hidden { display: none !important; }
